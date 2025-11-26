@@ -2,7 +2,7 @@
 # Set all variables to start de script
 PROJECT=$(gcloud config get-value project)
 BUCKET_NAME="$PROJECT-bucket"
-REGION="europe-west1"
+REGION="Multi-Region"
 ZONE="us-east1-c"
 IMAGE_NAME="sample.txt"
 IMAGE_NAME_RENAMED="ada-renamed.txt"
@@ -11,11 +11,10 @@ FOLDER_NAME="image-folder"
 echo "gcloud auth list and proy"
 gcloud auth list
 gcloud config list project
-gcloud config set compute/region $REGION
 
 # Create a BUCKET by command line
 echo "Create a BUCKET by command line"
-gcloud storage buckets create gs://$BUCKET_NAME
+gcloud storage buckets create gs://$BUCKET_NAME --location=$REGION
 
 # move image to test the service in Bucket via cloud
 echo "download and upload images to bucket"
